@@ -62,14 +62,14 @@ export default new Vuex.Store({
     initializeApp: function(context) {
 
       axios
-        .post(process.env.VUE_APP_BACKEND_BASE_URL + '/oauth/token?scope=any&grant_type=client_credentials',
+        .post('http://localhost:8080' + '/oauth/token?scope=any&grant_type=client_credentials',
           {
 
           },
           {
             auth: {
-              username: process.env.VUE_APP_CLIENT_ID,
-              password: process.env.VUE_APP_CLIENT_SECRET
+              username: clientID,
+              password: clientSecret
             }
           }
         )
@@ -89,7 +89,7 @@ export default new Vuex.Store({
     loadDevelopers: function(context) {
 
       axios
-        .get(process.env.VUE_APP_BACKEND_BASE_URL + '/developers', { headers: authHeader(context.state) })
+        .get('http://localhost:8080' + '/developers', { headers: authHeader(context.state) })
 
         .then(function(response){
 
@@ -103,7 +103,7 @@ export default new Vuex.Store({
     loadTaskStatus: function(context) {
 
       axios
-        .get(process.env.VUE_APP_BACKEND_BASE_URL + '/task_status', { headers: authHeader(context.state) })
+        .get('http://localhost:8080' + '/task_status', { headers: authHeader(context.state) })
 
         .then(function(response){
 
@@ -117,7 +117,7 @@ export default new Vuex.Store({
     loadTaskTypes: function(context) {
 
       axios
-        .get(process.env.VUE_APP_BACKEND_BASE_URL + '/task_types', { headers: authHeader(context.state) })
+        .get('http://localhost:8080' + '/task_types', { headers: authHeader(context.state) })
 
         .then(function(response){
 
@@ -131,7 +131,7 @@ export default new Vuex.Store({
     loadTasks: function(context) {
 
       axios
-        .get(process.env.VUE_APP_BACKEND_BASE_URL + '/tasks', { headers: authHeader(context.state) })
+        .get('http://localhost:8080' + '/tasks', { headers: authHeader(context.state) })
 
         .then(function(response){
 
@@ -145,9 +145,9 @@ export default new Vuex.Store({
     moveLeftTask: function(context, payload) {
 
       axios
-        .patch(process.env.VUE_APP_BACKEND_BASE_URL + '/tasks/' + payload.taskId,          
+        .patch('http://localhost:8080' + '/tasks/' + payload.taskId,          
           {
-            action: process.env.VUE_APP_ACTION_MOVE_LEFT
+            action: MOVE_LEFT
           },
           { 
             headers: authHeader(context.state) 
@@ -160,9 +160,9 @@ export default new Vuex.Store({
     moveRightTask: function(context, payload) {
 
       axios
-        .patch(process.env.VUE_APP_BACKEND_BASE_URL + '/tasks/' + payload.taskId, 
+        .patch('http://localhost:8080'+ '/tasks/' + payload.taskId, 
           {
-            action: process.env.VUE_APP_ACTION_MOVE_RIGHT
+            action: MOVE_RIGHT
           },
           { 
             headers: authHeader(context.state) 

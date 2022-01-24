@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     displayMoveLeft: function(label) {
-      return(label != process.env.VUE_APP_TASK_STATUS_TODO_LABEL);
+      return(label != 'TODO');
     },
     moveLeft: function(id) {
       let payload = {
@@ -56,7 +56,7 @@ export default {
       this.$store.dispatch('moveLeftTask', payload);
     },
     displayMoveRight: function(label) {
-      return(label != process.env.VUE_APP_TASK_STATUS_DONE_LABEL);
+      return(label != 'DONE');
     },
     moveRight: function(id) {
       let payload = {

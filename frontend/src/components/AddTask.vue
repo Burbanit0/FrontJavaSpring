@@ -132,7 +132,7 @@ export default {
   methods: {
     onSubmit: function() {
       axios
-        .post(process.env.VUE_APP_BACKEND_BASE_URL + '/tasks', 
+        .post('http://localhost:8080' + '/tasks', 
           {
             title: this.form.title,
             type: {
